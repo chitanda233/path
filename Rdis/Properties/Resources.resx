@@ -121,7 +121,7 @@
     <value>请启动时附加参数
 参数0：startX
 参数1：startY
-参数2：MAXnum
+参数2：maxNum
 比如 Rdis.exe 1 1 200</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />

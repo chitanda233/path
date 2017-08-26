@@ -84,7 +84,7 @@ namespace Rdis.Properties {
         ///   查找类似 请启动时附加参数
         ///参数0：startX
         ///参数1：startY
-        ///参数2：MAXnum
+        ///参数2：maxNum
         ///比如 Rdis.exe 1 1 200 的本地化字符串。
         /// </summary>
         internal static string help {
