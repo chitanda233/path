@@ -1,21 +1,31 @@
 ﻿using System;
 using System.Drawing;
 using System.Threading;
+using Rdis.Properties;
 
 namespace Rdis
 {
     internal class Program
     {
-        private static void Main()
+        private static void Main(string[] args)
         {
+            if (args.Length==0)
+            {
+                Console.WriteLine(Resources.help);
+                Console.ReadKey();
+                return;
+            }
             var program = new Program();
             var a = 1;
+            var x = int.Parse(args[0]);
+            var y = int.Parse(args[1]);
+            var max = int.Parse(args[2]);
             var srcDir = 0;
-            program.Run(4, 1, ref a, ref srcDir);
+            program.Run(x, y, ref a, ref srcDir,max);
             Console.ReadKey();
         }
 
-        private void Run(int x, int y, ref int a, ref int srcDir)
+        private void Run(int x, int y, ref int a, ref int srcDir,int maxNum)
         {
             while (true)
             {
@@ -38,13 +48,13 @@ namespace Rdis
                 var r = ran.Next(0, disNum);
                 var key = dis[r];
                 srcDir = key;
-                Console.WriteLine(srcDir);
+//                Console.WriteLine(srcDir);
                 var pnext = GetNextPointbyDis(p, key);
 
                 if (pnext.X > 0 && pnext.X <= 7 && pnext.Y > 0 && pnext.Y <= 8)
                 {
-                    Console.WriteLine(pnext);
-                    if (a > 200)
+                    Console.WriteLine(pnext.Y.ToString()+pnext.X.ToString());
+                    if (a > maxNum)
                         return;
                     x = pnext.X;
                     y = pnext.Y;
