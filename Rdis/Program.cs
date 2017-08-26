@@ -65,7 +65,7 @@ namespace Rdis
         }
 
         // ReSharper disable once UnusedMember.Local
-        private void RunbyRecursie(int x, int y, ref int a, ref int srcDir)
+        private void RunbyRecursie(int x, int y, ref int a, ref int srcDir,int maxNum)
         {
             a += 1;
             int[] dis;
@@ -101,9 +101,9 @@ namespace Rdis
             if (pnext.X > 0 && pnext.X <= 7 && pnext.Y > 0 && pnext.Y <= 8)
             {
                 Console.WriteLine(pnext);
-                if (a > 100)
+                if (a > maxNum)
                     return;
-                RunbyRecursie(pnext.X, pnext.Y, ref a, ref srcDir);
+                RunbyRecursie(pnext.X, pnext.Y, ref a, ref srcDir,maxNum);
             }
         }
 
