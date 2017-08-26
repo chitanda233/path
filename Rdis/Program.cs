@@ -9,7 +9,7 @@ namespace Rdis
     {
         private static void Main(string[] args)
         {
-            if (args.Length==0)
+            if (args.Length!=3)
             {
                 Console.WriteLine(Resources.help);
                 Console.ReadKey();
