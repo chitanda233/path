@@ -25,7 +25,7 @@ namespace Rdis
             Console.ReadKey();
         }
 
-        private void Run(int x, int y, ref int a, ref int srcDir,int maxNum)
+        private void Run(int x, int y, ref int a, ref int srcDir, int maxNum)
         {
             while (true)
             {
