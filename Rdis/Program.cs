@@ -30,9 +30,8 @@ namespace Rdis
             while (true)
             {
                 a += 1;
-                int[] dis;
                 var p = new Point(x, y);
-                var disNum = GetAbleDir(p, out dis);
+                var disNum = GetAbleDir(p, out var dis);
                 var target = Array.IndexOf(dis, GetReDir(srcDir));
                 if (target != -1)
                     dis[target] = 0;
@@ -68,9 +67,8 @@ namespace Rdis
         private void RunbyRecursie(int x, int y, ref int a, ref int srcDir,int maxNum)
         {
             a += 1;
-            int[] dis;
             var p = new Point(x, y);
-            var disNum = GetAbleDir(p, out dis);
+            var disNum = GetAbleDir(p, out var dis);
 
             //获取上次路径中选取的方向的反方向
             var target = Array.IndexOf(dis, GetReDir(srcDir));
