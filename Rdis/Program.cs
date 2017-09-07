@@ -25,32 +25,48 @@ namespace Rdis
             Console.ReadKey();
         }
 
+
+        //循环写法，resharper自动生成
         private void Run(int x, int y, ref int a, ref int srcDir, int maxNum)
         {
             while (true)
             {
                 a += 1;
+                int[] dis;
                 var p = new Point(x, y);
-                var disNum = GetAbleDir(p, out var dis);
+                var disNum = GetAbleDir(p, out dis);
+
+                //获取上次路径中选取的方向的反方向
                 var target = Array.IndexOf(dis, GetReDir(srcDir));
+
+                //把来源路径屏蔽
                 if (target != -1)
                     dis[target] = 0;
+
+                //排序和反排序，用来将数组中不为0的数放到前面位置来
                 Array.Sort(dis);
                 Array.Reverse(dis);
+
+                //确定随机的范围，因为随机是从1-N，数组下标是0-N-1
                 if (srcDir != 0)
                     disNum -= 2;
                 else
                     disNum -= 1;
 
+                //等灯
                 Thread.Sleep(20);
+                //随机一个方向
                 var ran = new Random();
                 var r = ran.Next(0, disNum);
                 var key = dis[r];
+
+                //记录本次移动的方向
                 srcDir = key;
 //                Console.WriteLine(srcDir);
+                //移动到下一个点
                 var pnext = GetNextPointbyDis(p, key);
 
-                if (pnext.X > 0 && pnext.X <= 7 && pnext.Y > 0 && pnext.Y <= 8)
+                if (pnext.X > 0 && pnext.X <= 6 && pnext.Y > 0 && pnext.Y <= 7)
                 {
                     Console.WriteLine(pnext.Y.ToString()+pnext.X.ToString());
                     if (a > maxNum)
@@ -67,8 +83,9 @@ namespace Rdis
         private void RunbyRecursie(int x, int y, ref int a, ref int srcDir,int maxNum)
         {
             a += 1;
+            int[] dis;
             var p = new Point(x, y);
-            var disNum = GetAbleDir(p, out var dis);
+            var disNum = GetAbleDir(p, out dis);
 
             //获取上次路径中选取的方向的反方向
             var target = Array.IndexOf(dis, GetReDir(srcDir));
@@ -96,7 +113,7 @@ namespace Rdis
             srcDir = key;
             var pnext = GetNextPointbyDis(p, key);
 
-            if (pnext.X > 0 && pnext.X <= 7 && pnext.Y > 0 && pnext.Y <= 8)
+            if (pnext.X > 0 && pnext.X <= 6 && pnext.Y > 0 && pnext.Y <= 7)
             {
                 Console.WriteLine(pnext);
                 if (a > maxNum)
@@ -182,17 +199,17 @@ namespace Rdis
             //现在是按照8行7列算的，Y轴最大到8，X轴最大到7
             if (p.X > 0 && p.Y > 0)
             {
-                if (p.X + 1 <= 7 && p.Y + 1 <= 8)
+                if (p.X + 1 <= 6 && p.Y + 1 <= 7)
                 {
                     dis[i] = 8;
                     i++;
                 }
-                if (p.X + 1 <= 7 && p.Y - 1 > 0)
+                if (p.X + 1 <= 6 && p.Y - 1 > 0)
                 {
                     dis[i] = 7;
                     i++;
                 }
-                if (p.X - 1 > 0 && p.Y + 1 <= 8)
+                if (p.X - 1 > 0 && p.Y + 1 <= 7)
                 {
                     dis[i] = 6;
                     i++;
@@ -207,7 +224,7 @@ namespace Rdis
                     dis[i] = 4;
                     i++;
                 }
-                if (p.X + 1 <= 7)
+                if (p.X + 1 <= 6)
                 {
                     dis[i] = 3;
                     i++;
@@ -217,7 +234,7 @@ namespace Rdis
                     dis[i] = 2;
                     i++;
                 }
-                if (p.Y + 1 <= 8)
+                if (p.Y + 1 <= 7)
                 {
                     dis[i] = 1;
                     i++;
